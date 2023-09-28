@@ -7,6 +7,9 @@ class TransactionDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Text(id));
+    return Scaffold(
+      appBar: AppBar(title: Text('Transaction $id')),
+      body: Center(child: Text(id)),
+    );
   }
 }
