@@ -5,6 +5,7 @@ import 'package:transactions/core/di/init_dependencies.dart';
 import 'package:transactions/core/domain/transaction_repository.dart';
 import 'package:transactions/core/redux/actions.dart';
 import 'package:transactions/core/redux/app_state.dart';
+import 'package:transactions/core/util/lang.dart';
 import 'package:transactions/core/widgets/state_stream_builder.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -18,16 +19,16 @@ class HomeScreen extends StatelessWidget {
       converter: (store) => store.state.transactionsState,
       builder: (context, vm) => Scaffold(
         appBar: AppBar(
-          title: const Text('Home'),
+          title: Text(context.lang.homeTitle),
           bottom: TabBar(
             controller: tabPage.controller,
             tabs: [
               StreamableStoreBuilder<int>(
                 stream: getIt<TransactionRepository>().count,
                 actionBuilder: (event) => TransactionsCountUpdated(event),
-                child: Tab(text: 'Transactions (${vm.count})'),
+                child: Tab(text: context.lang.tabTransactions(vm.count)),
               ),
-              const Tab(text: 'Donut'),
+              Tab(text: context.lang.tabChart),
             ],
           ),
           actions: [

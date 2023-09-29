@@ -6,6 +6,7 @@ import 'package:transactions/core/domain/transaction_repository.dart';
 import 'package:transactions/core/redux/actions.dart';
 import 'package:transactions/core/redux/app_state.dart';
 import 'package:transactions/core/widgets/state_stream_builder.dart';
+import 'package:transactions/features/login/presentation/login_screen.dart';
 
 class DonutScreen extends StatelessWidget {
   const DonutScreen({Key? key}) : super(key: key);
@@ -25,7 +26,7 @@ class DonutScreen extends StatelessWidget {
               width: 300,
               padding: const EdgeInsets.all(8.0),
               child: PieChart(
-                dataMap: vm.map((key, value) => MapEntry<String, double>(key.toString(), value.toDouble())),
+                dataMap: vm.map((key, value) => MapEntry<String, double>(key.getName(context), value.toDouble())),
                 chartType: ChartType.ring,
                 legendOptions: const LegendOptions(
                   legendPosition: LegendPosition.top,

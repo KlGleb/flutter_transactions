@@ -3,7 +3,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:transactions/core/domain/models/transaction_type.dart';
 
 part 'transaction_entity.freezed.dart';
-
 part 'transaction_entity.g.dart';
 
 @freezed
@@ -13,6 +12,7 @@ class TransactionEntity with _$TransactionEntity {
     required int amount,
     required int commission,
     required int sum,
+    required int total,
     required TransactionType type,
     required DateTime date,
   }) = _TransactionEntity;

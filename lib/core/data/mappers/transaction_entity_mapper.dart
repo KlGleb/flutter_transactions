@@ -9,5 +9,6 @@ extension TransactionEntityMapper on TransactionEntity {
         sum: sum,
         type: type,
         date: date,
+        total: total,
       );
 }

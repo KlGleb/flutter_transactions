@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:transactions/core/domain/models/transaction_type.dart';
 import 'package:transactions/core/redux/app_state.dart';
+import 'package:transactions/core/util/lang.dart';
 import 'package:transactions/features/login/presentation/login_screen_vm.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -9,16 +11,16 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Log In')),
+      appBar: AppBar(title: Text(context.lang.loginTitle)),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const TextField(decoration: InputDecoration(labelText: 'User name')),
+            TextField(decoration: InputDecoration(labelText: context.lang.userNameLabel)),
             const SizedBox(height: 16.0),
-            const TextField(
-              decoration: InputDecoration(labelText: 'Password'),
+            TextField(
+              decoration: InputDecoration(labelText: context.lang.passwordLabel),
               obscureText: true,
             ),
             const SizedBox(height: 32.0),
@@ -27,7 +29,7 @@ class LoginScreen extends StatelessWidget {
               builder: (BuildContext context, vm) {
                 return ElevatedButton(
                   onPressed: () => vm.onLogin('userName', 'password'),
-                  child: const Text('Log in'),
+                  child: Text(context.lang.loginButton),
                 );
               },
             ),
@@ -35,5 +37,18 @@ class LoginScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+extension TransactionTypeName on TransactionType {
+  String getName(BuildContext context) {
+    switch (this) {
+      case TransactionType.deposit:
+        return context.lang.transactionTypeDeposit;
+      case TransactionType.transfer:
+        return context.lang.transactionTypeTransfer;
+      case TransactionType.withdrawal:
+        return context.lang.transactionTypeWithdrawal;
+    }
   }
 }

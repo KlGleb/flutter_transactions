@@ -10,6 +10,7 @@ class TransactionModel with _$TransactionModel {
     required String id,
     required int amount,
     required int commission,
+    required int total,
     required int sum,
     required TransactionType type,
     required DateTime date,

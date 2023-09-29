@@ -30,6 +30,7 @@ class TransactionDataSourceImpl implements TransactionDataSource {
         amount: 100,
         commission: 5,
         sum: 300,
+        total: 295,
         type: next(0, 2) == 0
             ? TransactionType.transfer
             : next(0, 2) == 1

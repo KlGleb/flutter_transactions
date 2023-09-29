@@ -1,0 +1,19 @@
+{
+  "appName": "Transactions",
+  "tabTransactions": "Transactions ({count})",
+  "tabChart": "Chart",
+  "transactionTypeDeposit": "Deposit",
+  "transactionTypeTransfer": "Transfer",
+  "transactionTypeWithdrawal": "Withdrawal",
+  "transactionId": "id: {id}",
+  "homeTitle": "Home",
+  "loginTitle": "Log in",
+  "userNameLabel": "User name",
+  "passwordLabel": "Password",
+  "loginButton": "Log in",
+  "cancelTransactionButton": "Cancel transaction",
+  "commissionLabel": "Commission",
+  "totalAmountLabel": "Total amount",
+  "transactionDetailsTitle": "Transaction {id}",
+  "moneyAmount": "{amount} €"
+}
