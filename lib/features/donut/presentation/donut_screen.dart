@@ -19,22 +19,24 @@ class DonutScreen extends StatelessWidget {
       builder: (context, vm) => StreamableStoreBuilder(
         stream: getIt<TransactionRepository>().transactions,
         actionBuilder: (event) => TransactionsUpdated(event),
-        child: Builder(builder: (context) {
-          if (vm.isEmpty) return const Center(child: CircularProgressIndicator());
-          return Center(
-            child: Container(
-              width: 300,
-              padding: const EdgeInsets.all(8.0),
-              child: PieChart(
-                dataMap: vm.map((key, value) => MapEntry<String, double>(key.getName(context), value.toDouble())),
-                chartType: ChartType.ring,
-                legendOptions: const LegendOptions(
-                  legendPosition: LegendPosition.top,
+        child: Builder(
+          builder: (context) {
+            if (vm.isEmpty) return const Center(child: CircularProgressIndicator());
+            return Center(
+              child: Container(
+                width: 300,
+                padding: const EdgeInsets.all(8.0),
+                child: PieChart(
+                  dataMap: vm.map((key, value) => MapEntry<String, double>(key.getName(context), value.toDouble())),
+                  chartType: ChartType.ring,
+                  legendOptions: const LegendOptions(
+                    legendPosition: LegendPosition.top,
+                  ),
                 ),
               ),
-            ),
-          );
-        }),
+            );
+          },
+        ),
       ),
     );
   }

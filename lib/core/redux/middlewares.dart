@@ -21,7 +21,7 @@ Middleware<AppState> _createLogin(AuthRepository repository) => (Store<AppState>
 
 List<Middleware<AppState>> createTransactionsMiddleware(TransactionRepository repository) => [
       TypedMiddleware<AppState, GetTransactions>(_createGetTransactions(repository)),
-      TypedMiddleware<AppState, TransactionsUpdated>(_createDonut())
+      TypedMiddleware<AppState, TransactionsUpdated>(_createDonut()),
     ];
 
 Middleware<AppState> _createGetTransactions(TransactionRepository repository) =>

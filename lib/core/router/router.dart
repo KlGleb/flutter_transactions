@@ -7,22 +7,21 @@ import 'package:transactions/features/transaction_details/presentation/transacti
 import 'package:transactions/features/transactions/presentation/transactions_screen.dart';
 
 final routes = RouteMap(
-    onUnknownRoute: (_) => const Redirect('/'),
-    routes: {
-      '/': (_) =>
-      const TabPage(
-        child: HomeScreen(),
-        paths: ['/transactions', '/donut'],
-      ),
-      '/transactions': (_) => const MaterialPage(child: TransactionsScreen()),
-      '/donut': (_) => const MaterialPage(child: DonutScreen()),
-      '/transaction/:id': (info) => MaterialPage(child: TransactionDetailsScreen(id: info.pathParameters['id']!)),
-    }
+  onUnknownRoute: (_) => const Redirect('/'),
+  routes: {
+    '/': (_) => const TabPage(
+          child: HomeScreen(),
+          paths: ['/transactions', '/donut'],
+        ),
+    '/transactions': (_) => const MaterialPage(child: TransactionsScreen()),
+    '/donut': (_) => const MaterialPage(child: DonutScreen()),
+    '/transaction/:id': (info) => MaterialPage(child: TransactionDetailsScreen(id: info.pathParameters['id']!)),
+  },
 );
 
 final unauthorisedRoutes = RouteMap(
-    onUnknownRoute: (_) => const Redirect('/login'),
-    routes: {
-      '/login': (_) => const MaterialPage(child: LoginScreen()),
-    }
+  onUnknownRoute: (_) => const Redirect('/login'),
+  routes: {
+    '/login': (_) => const MaterialPage(child: LoginScreen()),
+  },
 );

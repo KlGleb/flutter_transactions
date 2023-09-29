@@ -28,11 +28,13 @@ class TransactionDetailsScreen extends StatelessWidget {
           stream: getIt<TransactionRepository>().watchById(id),
           actionBuilder: (event) => TransactionDetailsUpdated(event),
           initAction: TransactionDetailsUpdated.clear(),
-          child: Builder(builder: (context) {
-            final tr = vm.transaction;
-            if (tr == null) return const Center(child: CircularProgressIndicator());
-            return _TransactionDetailsCard(transaction: tr);
-          }),
+          child: Builder(
+            builder: (context) {
+              final tr = vm.transaction;
+              if (tr == null) return const Center(child: CircularProgressIndicator());
+              return _TransactionDetailsCard(transaction: tr);
+            },
+          ),
         ),
       ),
     );
