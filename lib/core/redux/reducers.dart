@@ -2,10 +2,11 @@ import 'package:redux/redux.dart';
 import 'package:transactions/core/redux/actions.dart';
 import 'package:transactions/core/redux/app_state.dart';
 
-AppState reducer(AppState state, dynamic action) =>
-    AppState(
-      // _navigationReducer(state.currentPage, action),
+AppState reducer(AppState state, dynamic action) => AppState(
       _authReducer(state.authState, action),
+      _transactionsReducer(state.transactionsState, action),
+      _transactionDetailsReducer(state.transactionDetailsState, action),
+      _donutReducer(state.donutState, action),
     );
 
 Reducer<AuthState> _authReducer = combineReducers([
@@ -22,3 +23,30 @@ AuthState _logoutReducer(AuthState state, Logout action) => Unauthorized(true);
 AuthState _loginSuccessReducer(AuthState state, LoginSuccess action) => Authorized(false);
 
 AuthState _logoutSuccessReducer(AuthState state, LogoutSuccess action) => Unauthorized(false);
+
+Reducer<TransactionsState> _transactionsReducer = combineReducers([
+  TypedReducer<TransactionsState, TransactionsUpdated>(_updateTransactionsReducer),
+  TypedReducer<TransactionsState, TransactionsCountUpdated>(_updateTransactionsCountReducer),
+]);
+
+TransactionsState _updateTransactionsReducer(TransactionsState state, TransactionsUpdated action) =>
+    state.copyWith(transactions: action.transactions.toList());
+
+TransactionsState _updateTransactionsCountReducer(TransactionsState state, TransactionsCountUpdated action) =>
+    state.copyWith(count: action.count);
+
+Reducer<TransactionDetailsState> _transactionDetailsReducer = combineReducers([
+  TypedReducer<TransactionDetailsState, TransactionDetailsUpdated>(_updateTransactionDetailsReducer),
+]);
+
+TransactionDetailsState _updateTransactionDetailsReducer(
+  TransactionDetailsState state,
+  TransactionDetailsUpdated action,
+) =>
+    state.copyWith(transaction: action.transaction);
+
+Reducer<DonutState> _donutReducer = combineReducers([
+  TypedReducer<DonutState, DonutUpdated>(_donutUpdated),
+]);
+// DonutUpdated
+DonutState _donutUpdated(DonutState state, DonutUpdated action) => action.data;
