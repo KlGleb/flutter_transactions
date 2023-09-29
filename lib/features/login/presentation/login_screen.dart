@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:transactions/core/redux/actions.dart';
 import 'package:transactions/core/redux/app_state.dart';
 import 'package:transactions/features/login/presentation/login_screen_vm.dart';
 

@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:get_it/get_it.dart';
 import 'package:redux/redux.dart';
 import 'package:routemaster/routemaster.dart';
 import 'package:transactions/core/di/init_dependencies.dart';
-import 'package:transactions/core/domain/auth_repository.dart';
 import 'package:transactions/core/redux/app_state.dart';
-import 'package:transactions/core/redux/middlewares.dart';
-import 'package:transactions/core/redux/reducers.dart';
 import 'package:transactions/core/router/router.dart';
 
 void main() {
