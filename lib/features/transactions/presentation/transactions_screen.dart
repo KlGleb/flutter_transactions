@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:redux/src/store.dart';
+import 'package:redux/redux.dart';
 import 'package:routemaster/routemaster.dart';
 import 'package:transactions/core/domain/models/transaction_model.dart';
 import 'package:transactions/core/domain/models/transaction_type.dart';
-import 'package:transactions/core/redux/actions.dart';
 import 'package:transactions/core/redux/app_state.dart';
 import 'package:transactions/core/util/lang.dart';
+import 'package:transactions/features/transactions/presentation/state_management/transactions_actions.dart';
+import 'package:transactions/features/transactions/presentation/state_management/transactions_state.dart';
 
 part 'transaction_card.dart';
+
 part 'transaction_icon.dart';
 
 class TransactionsScreen extends StatelessWidget {

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:routemaster/routemaster.dart';
-import 'package:transactions/core/redux/actions.dart';
 import 'package:transactions/core/redux/app_state.dart';
 import 'package:transactions/core/util/lang.dart';
+import 'package:transactions/features/home/presentation/state_management/home_actions.dart';
+import 'package:transactions/features/login/presentation/state_management/login_actions.dart';
 
 part 'transactions_scope.dart';
 

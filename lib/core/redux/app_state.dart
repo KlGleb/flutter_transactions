@@ -1,11 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:transactions/core/domain/models/transaction_model.dart';
-import 'package:transactions/core/domain/models/transaction_type.dart';
-
-part 'app_state.freezed.dart';
-
-typedef DonutState = Map<TransactionType, int>;
+import 'package:transactions/features/donut/presentation/state_management/donut_state.dart';
+import 'package:transactions/features/login/presentation/state_management/login_state.dart';
+import 'package:transactions/features/transaction_details/presentation/state_management/transaction_details_state.dart';
+import 'package:transactions/features/transactions/presentation/state_management/transactions_state.dart';
 
 @immutable
 class AppState {
@@ -22,33 +20,4 @@ class AppState {
   ]);
 }
 
-sealed class AuthState {}
 
-class Unauthorized extends AuthState {
-  bool inProgress;
-
-  Unauthorized(this.inProgress);
-}
-
-class Authorized extends AuthState {
-  bool inProgress;
-
-  Authorized(this.inProgress);
-}
-
-@freezed
-class TransactionsState with _$TransactionsState {
-  const factory TransactionsState({
-    @Default([]) List<TransactionModel> transactions,
-    @Default(0) int count,
-  }) = _TransactionsState;
-}
-
-@freezed
-class TransactionDetailsState with _$TransactionDetailsState {
-  const factory TransactionDetailsState({
-    TransactionModel? transaction,
-    @Default(false) bool removingInProgress,
-    @Default(false) bool removingDone,
-  }) = _TransactionDetailsState;
-}

@@ -13,6 +13,7 @@ import 'package:transactions/core/redux/app_state.dart';
 import 'package:transactions/core/redux/epics.dart';
 import 'package:transactions/core/redux/middlewares.dart';
 import 'package:transactions/core/redux/reducers.dart';
+import 'package:transactions/features/login/presentation/state_management/login_state.dart';
 
 final getIt = GetIt.instance;
 
@@ -23,9 +24,7 @@ void initDependencies() {
       reducer,
       initialState: AppState(Unauthorized(true)),
       middleware: [
-        ...createAuthMiddleware(getIt()),
-        ...createTransactionsMiddleware(getIt()),
-        ...createTransactionDetailsMiddleware(getIt()),
+        ...appMiddleware,
         epicMiddleware,
       ],
     ),

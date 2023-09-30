@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:pie_chart/pie_chart.dart';
 import 'package:transactions/core/redux/app_state.dart';
+import 'package:transactions/features/donut/presentation/state_management/donut_state.dart';
 import 'package:transactions/features/login/presentation/login_screen.dart';
 
 class DonutScreen extends StatelessWidget {

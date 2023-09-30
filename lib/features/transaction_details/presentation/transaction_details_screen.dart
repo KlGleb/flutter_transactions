@@ -3,10 +3,11 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:intl/intl.dart';
 import 'package:routemaster/routemaster.dart';
 import 'package:transactions/core/domain/models/transaction_model.dart';
-import 'package:transactions/core/redux/actions.dart';
 import 'package:transactions/core/redux/app_state.dart';
 import 'package:transactions/core/util/lang.dart';
 import 'package:transactions/features/login/presentation/login_screen.dart';
+import 'package:transactions/features/transaction_details/presentation/state_management/transaction_details_actions.dart';
+import 'package:transactions/features/transaction_details/presentation/state_management/transaction_details_state.dart';
 import 'package:transactions/features/transactions/presentation/transactions_screen.dart';
 
 part 'transaction_details_card.dart';

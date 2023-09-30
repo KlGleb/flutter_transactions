@@ -7,6 +7,7 @@ import 'package:routemaster/routemaster.dart';
 import 'package:transactions/core/di/init_dependencies.dart';
 import 'package:transactions/core/redux/app_state.dart';
 import 'package:transactions/core/router/router.dart';
+import 'package:transactions/features/login/presentation/state_management/login_state.dart';
 
 void main() {
   initDependencies();
