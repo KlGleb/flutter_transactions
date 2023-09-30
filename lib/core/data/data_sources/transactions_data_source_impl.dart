@@ -7,12 +7,6 @@ import 'package:transactions/core/domain/models/transaction_type.dart';
 /// Emulates a rest service
 class TransactionDataSourceImpl implements TransactionDataSource {
   @override
-  Future<int> get count async {
-    await Future.delayed(const Duration(milliseconds: 1500));
-    return _transactions.length;
-  }
-
-  @override
   Future<List<TransactionEntity>> get transactions async {
     await Future.delayed(const Duration(milliseconds: 1900));
     return _transactions;

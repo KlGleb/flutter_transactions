@@ -4,9 +4,11 @@ class _TransactionDetailsCard extends StatelessWidget {
   const _TransactionDetailsCard({
     Key? key,
     required this.transaction,
+    required this.cancelDisabled,
   }) : super(key: key);
 
   final TransactionModel transaction;
+  final bool cancelDisabled;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +26,7 @@ class _TransactionDetailsCard extends StatelessWidget {
               width: double.infinity,
               padding: const EdgeInsets.all(16),
               child: Text(
-                context.lang.moneyAmount(transaction.sum),
+                context.lang.moneyAmount(transaction.amount),
                 style: theme.textTheme.headlineLarge!.copyWith(color: theme.colorScheme.primary),
                 textAlign: TextAlign.center,
               ),
@@ -59,7 +61,9 @@ class _TransactionDetailsCard extends StatelessWidget {
           padding: const EdgeInsets.all(16),
           width: double.infinity,
           child: ElevatedButton(
-            onPressed: () {},
+            onPressed: cancelDisabled
+                ? null
+                : () => StoreProvider.of<AppState>(context).dispatch(RemoveTransaction(transaction.id)),
             child: Text(context.lang.cancelTransactionButton),
           ),
         ),

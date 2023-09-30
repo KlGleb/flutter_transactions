@@ -20,11 +20,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return StoreProvider<AppState>(
       store: getIt<Store<AppState>>(),
-      child: StoreConnector<AppState, AppState>(
-        converter: (store) => store.state,
-        builder: (context, vm) => MaterialApp.router(
+      child: StoreConnector<AppState, AuthState>(
+        converter: (store) => store.state.authState,
+        builder: (context, authState) => MaterialApp.router(
           routerDelegate: RoutemasterDelegate(
-            routesBuilder: (context) => vm.authState is Unauthorized ? unauthorisedRoutes : routes,
+            routesBuilder: (context) => authState is Unauthorized ? unauthorisedRoutes : routes,
           ),
           routeInformationParser: const RoutemasterParser(),
           title: 'Flutter Demo',

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:routemaster/routemaster.dart';
-import 'package:transactions/core/di/init_dependencies.dart';
-import 'package:transactions/core/domain/transaction_repository.dart';
 import 'package:transactions/core/redux/actions.dart';
 import 'package:transactions/core/redux/app_state.dart';
 import 'package:transactions/core/util/lang.dart';
-import 'package:transactions/core/widgets/state_stream_builder.dart';
+
+part 'transactions_scope.dart';
+
+part 'transactions_tab.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -15,19 +16,14 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final tabPage = TabPage.of(context);
 
-    return StoreConnector<AppState, TransactionsState>(
-      converter: (store) => store.state.transactionsState,
-      builder: (context, vm) => Scaffold(
+    return _TransactionsScope(
+      child: Scaffold(
         appBar: AppBar(
           title: Text(context.lang.homeTitle),
           bottom: TabBar(
             controller: tabPage.controller,
             tabs: [
-              StreamableStoreBuilder<int>(
-                stream: getIt<TransactionRepository>().count,
-                actionBuilder: (event) => TransactionsCountUpdated(event),
-                child: Tab(text: context.lang.tabTransactions(vm.count)),
-              ),
+              const _TransactionsTab(),
               Tab(text: context.lang.tabChart),
             ],
           ),

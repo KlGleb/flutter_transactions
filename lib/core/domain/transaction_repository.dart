@@ -5,7 +5,9 @@ abstract class TransactionRepository {
 
   Stream<int> get count;
 
-  Stream<TransactionModel> watchById(String id);
+  Stream<TransactionModel?> watchById(String id);
 
-  Future get();
+  Future remove(String id);
+
+  Future sync();
 }

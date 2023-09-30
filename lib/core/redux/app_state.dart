@@ -48,5 +48,7 @@ class TransactionsState with _$TransactionsState {
 class TransactionDetailsState with _$TransactionDetailsState {
   const factory TransactionDetailsState({
     TransactionModel? transaction,
+    @Default(false) bool removingInProgress,
+    @Default(false) bool removingDone,
   }) = _TransactionDetailsState;
 }

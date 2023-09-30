@@ -37,6 +37,10 @@ TransactionsState _updateTransactionsCountReducer(TransactionsState state, Trans
 
 Reducer<TransactionDetailsState> _transactionDetailsReducer = combineReducers([
   TypedReducer<TransactionDetailsState, TransactionDetailsUpdated>(_updateTransactionDetailsReducer),
+  TypedReducer<TransactionDetailsState, RemoveTransaction>(_removeTransactionReducer),
+  TypedReducer<TransactionDetailsState, RemoveCompleted>(_removeCompletedReducer),
+  // TypedReducer<TransactionDetailsState, TransactionDetailsClear>(_clearTransactionDetailsReducer),
+  TypedReducer<TransactionDetailsState, SubscribeToTransaction>(_clearTransactionDetailsReducer),
 ]);
 
 TransactionDetailsState _updateTransactionDetailsReducer(
@@ -44,6 +48,30 @@ TransactionDetailsState _updateTransactionDetailsReducer(
   TransactionDetailsUpdated action,
 ) =>
     state.copyWith(transaction: action.transaction);
+
+TransactionDetailsState _clearTransactionDetailsReducer(
+  TransactionDetailsState state,
+  SubscribeToTransaction action,
+) =>
+    const TransactionDetailsState();
+
+/*TransactionDetailsState _clearTransactionDetailsReducer(
+  TransactionDetailsState state,
+    TransactionDetailsClear action,
+) =>
+    const TransactionDetailsState();*/
+
+TransactionDetailsState _removeTransactionReducer(
+  TransactionDetailsState state,
+  RemoveTransaction action,
+) =>
+    state.copyWith(removingInProgress: true);
+
+TransactionDetailsState _removeCompletedReducer(
+  TransactionDetailsState state,
+  RemoveCompleted action,
+) =>
+    state.copyWith(removingDone: true);
 
 Reducer<DonutState> _donutReducer = combineReducers([
   TypedReducer<DonutState, DonutUpdated>(_donutUpdated),

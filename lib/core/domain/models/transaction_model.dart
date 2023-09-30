@@ -11,7 +11,6 @@ class TransactionModel with _$TransactionModel {
     required int amount,
     required int commission,
     required int total,
-    required int sum,
     required TransactionType type,
     required DateTime date,
   }) = _TransactionModel;

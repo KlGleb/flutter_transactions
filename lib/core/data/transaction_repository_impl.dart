@@ -1,30 +1,29 @@
-import 'package:rxdart/rxdart.dart';
 import 'package:transactions/core/data/data_sources/transactions_data_source.dart';
+import 'package:transactions/core/data/db/dao.dart';
+import 'package:transactions/core/data/mappers/transaction_dto_mapper.dart';
 import 'package:transactions/core/data/mappers/transaction_entity_mapper.dart';
 import 'package:transactions/core/domain/models/transaction_model.dart';
 import 'package:transactions/core/domain/transaction_repository.dart';
 
 class TransactionRepositoryImpl implements TransactionRepository {
   final TransactionDataSource _dataSource;
-  final BehaviorSubject<Iterable<TransactionModel>> _transactions = BehaviorSubject();
-  final BehaviorSubject<int> _count = BehaviorSubject();
+  final TransactionsDao _dao;
 
-  TransactionRepositoryImpl(this._dataSource);
-
-  @override
-  Stream<Iterable<TransactionModel>> get transactions => _transactions;
+  TransactionRepositoryImpl(this._dataSource, this._dao);
 
   @override
-  Stream<int> get count => _count;
+  Stream<Iterable<TransactionModel>> get transactions =>
+      _dao.watchTransactions.map((event) => event.map((e) => e.model));
 
   @override
-  Future get() async {
-    _dataSource.count.then((value) => _count.add(value));
-    _dataSource.transactions.then((value) => _transactions.add(value.map((e) => e.model)));
-  }
+  Stream<int> get count => transactions.map((event) => event.length);
 
   @override
-  Stream<TransactionModel> watchById(String id) {
-    return Stream.fromIterable([_transactions.value.first.copyWith(id: id)]);
-  }
+  Future sync() => _dataSource.transactions.then((value) => _dao.updAll(value.map((e) => e.dto)));
+
+  @override
+  Stream<TransactionModel?> watchById(String id) => _dao.watchById(id).map((event) => event?.model);
+
+  @override
+  Future remove(String id) => _dataSource.remove(id).then((value) => _dao.remove(id));
 }

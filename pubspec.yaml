@@ -46,6 +46,10 @@ dependencies:
   intl: ^0.18.1
   flutter_localizations:
     sdk: flutter
+  drift: ^2.12.1
+  sqlite3_flutter_libs: ^0.5.17
+  logger: ^2.0.2+1
+  redux_epics: ^0.15.1
 
 dev_dependencies:
   flutter_test:
@@ -54,6 +58,7 @@ dev_dependencies:
   build_runner: ^2.4.6
   freezed: ^2.4.3
   json_serializable: ^6.7.1
+  drift_dev: ^2.12.1
 
 flutter:
   uses-material-design: true

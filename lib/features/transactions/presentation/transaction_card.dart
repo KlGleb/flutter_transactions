@@ -9,15 +9,13 @@ class _TransactionCard extends StatelessWidget {
   final TransactionModel transaction;
 
   @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(
-        context.lang.moneyAmount(transaction.sum),
-        style: Theme.of(context).textTheme.titleLarge,
-      ),
-      subtitle: Text(context.lang.transactionId(transaction.id)),
-      leading: TransactionIcon(type: transaction.type),
-      onTap: () => Routemaster.of(context).push('/transaction/${transaction.id}'),
-    );
-  }
+  Widget build(BuildContext context) => ListTile(
+        title: Text(
+          context.lang.moneyAmount(transaction.amount),
+          style: Theme.of(context).textTheme.titleLarge,
+        ),
+        subtitle: Text(context.lang.transactionId(transaction.id)),
+        leading: TransactionIcon(type: transaction.type),
+        onTap: () => Routemaster.of(context).push('/transaction/${transaction.id}'),
+      );
 }

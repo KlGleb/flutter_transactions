@@ -38,9 +38,25 @@ class TransactionDetailsUpdated extends TransactionDetailsAction {
   TransactionModel? transaction;
 
   TransactionDetailsUpdated(this.transaction);
-
-  TransactionDetailsUpdated.clear();
 }
+
+class TransactionDetailsClear extends TransactionDetailsAction {}
+
+class RemoveTransaction extends TransactionDetailsAction {
+  final String id;
+
+  RemoveTransaction(this.id);
+}
+
+class RemoveCompleted extends TransactionDetailsAction {}
+
+class SubscribeToTransaction extends TransactionDetailsAction {
+  String transactionId;
+
+  SubscribeToTransaction(this.transactionId);
+}
+
+class UnsubscribeFromTransaction extends TransactionDetailsAction {}
 
 sealed class DonutAction {}
 
@@ -49,3 +65,13 @@ class DonutUpdated {
 
   DonutUpdated(this.data);
 }
+
+sealed class HomeAction {}
+
+class SubscribeToTransactions extends HomeAction {}
+
+class UnsubscribeFromTransactions extends HomeAction {}
+
+class SubscribeToCount extends HomeAction {}
+
+class UnsubscribeFromCount extends HomeAction {}

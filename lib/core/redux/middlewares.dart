@@ -27,7 +27,7 @@ List<Middleware<AppState>> createTransactionsMiddleware(TransactionRepository re
 Middleware<AppState> _createGetTransactions(TransactionRepository repository) =>
     (Store<AppState> store, action, NextDispatcher next) {
       next(action);
-      repository.get();
+      repository.sync();
     };
 
 Middleware<AppState> _createDonut() => (Store<AppState> store, action, NextDispatcher next) {
@@ -44,3 +44,22 @@ Middleware<AppState> _createDonut() => (Store<AppState> store, action, NextDispa
 
       store.dispatch(DonutUpdated(map));
     };
+
+List<Middleware<AppState>> createTransactionDetailsMiddleware(TransactionRepository repository) => [
+      TypedMiddleware<AppState, RemoveTransaction>(_createRemoveTransactions(repository)),
+    ];
+
+Middleware<AppState> _createRemoveTransactions(TransactionRepository repository) =>
+    (Store<AppState> store, action, NextDispatcher next) {
+      next(action);
+      repository.remove(action.id).then((value) => store.dispatch(RemoveCompleted()));
+    };
+
+/*Middleware<AppState> _subscribeTransactions(TransactionRepository repository) =>
+        (Store<AppState> store, action, NextDispatcher next) {
+      next(action);
+      repository.transactions.listen((event) {
+        store.dispatch(TransactionsUpdated(event));
+      });
+      repository.remove(action.id).then((value) => store.dispatch(RemoveCompleted()));
+    };*/
