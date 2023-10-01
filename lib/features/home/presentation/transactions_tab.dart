@@ -9,6 +9,7 @@ class _TransactionsTab extends StatelessWidget {
       onInit: (store) => store.dispatch(SubscribeToCount()),
       onDispose: (store) => store.dispatch(UnsubscribeFromCount()),
       converter: (store) => store.state.transactionsState.count,
+      distinct: true,
       builder: (context, count) => Tab(text: context.lang.tabTransactions(count)),
     );
   }

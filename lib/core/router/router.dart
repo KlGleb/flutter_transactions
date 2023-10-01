@@ -22,6 +22,6 @@ final routes = RouteMap(
 final unauthorisedRoutes = RouteMap(
   onUnknownRoute: (_) => const Redirect('/login'),
   routes: {
-    '/login': (_) => const MaterialPage(child: LoginScreen()),
+    '/login': (_) => MaterialPage(child: LoginScreen()),
   },
 );

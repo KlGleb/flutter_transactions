@@ -6,8 +6,8 @@ import 'package:redux/redux.dart';
 import 'package:routemaster/routemaster.dart';
 import 'package:transactions/core/di/init_dependencies.dart';
 import 'package:transactions/core/redux/app_state.dart';
+import 'package:transactions/core/redux/auth/auth_state.dart';
 import 'package:transactions/core/router/router.dart';
-import 'package:transactions/features/login/presentation/state_management/login_state.dart';
 
 void main() {
   initDependencies();
@@ -23,9 +23,10 @@ class MyApp extends StatelessWidget {
       store: getIt<Store<AppState>>(),
       child: StoreConnector<AppState, AuthState>(
         converter: (store) => store.state.authState,
+        distinct: true,
         builder: (context, authState) => MaterialApp.router(
           routerDelegate: RoutemasterDelegate(
-            routesBuilder: (context) => authState is Unauthorized ? unauthorisedRoutes : routes,
+            routesBuilder: (context) => authState == AuthState.authorized ? routes : unauthorisedRoutes,
           ),
           routeInformationParser: const RoutemasterParser(),
           title: 'Flutter Demo',

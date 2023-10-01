@@ -8,5 +8,6 @@ class TransactionsState with _$TransactionsState {
   const factory TransactionsState({
     @Default([]) List<TransactionModel> transactions,
     @Default(0) int count,
+    @Default(false) bool synchronizing,
   }) = _TransactionsState;
 }

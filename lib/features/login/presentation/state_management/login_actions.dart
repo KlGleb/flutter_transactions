@@ -1,14 +1,15 @@
-sealed class AuthAction {}
+sealed class LoginAction {}
 
-class Login extends AuthAction {
+class Login extends LoginAction {}
+
+class SaveUserName extends LoginAction {
   final String userName;
-  final String password;
 
-  Login(this.userName, this.password);
+  SaveUserName(this.userName);
 }
 
-class Logout extends AuthAction {}
+class SavePassword extends LoginAction {
+  final String password;
 
-class LoginSuccess extends AuthAction {}
-
-class LogoutSuccess extends AuthAction {}
+  SavePassword(this.password);
+}

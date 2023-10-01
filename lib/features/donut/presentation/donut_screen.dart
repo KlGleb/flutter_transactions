@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:pie_chart/pie_chart.dart';
 import 'package:transactions/core/redux/app_state.dart';
+import 'package:transactions/core/util/transaction_type_name.dart';
 import 'package:transactions/features/donut/presentation/state_management/donut_state.dart';
-import 'package:transactions/features/login/presentation/login_screen.dart';
 
 class DonutScreen extends StatelessWidget {
   const DonutScreen({Key? key}) : super(key: key);
@@ -12,6 +12,7 @@ class DonutScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return StoreConnector<AppState, DonutState>(
       converter: (store) => store.state.donutState,
+      distinct: true,
       builder: (context, vm) => Builder(
         builder: (context) {
           if (vm.isEmpty) return const Center(child: CircularProgressIndicator());

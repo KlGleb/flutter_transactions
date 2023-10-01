@@ -50,6 +50,7 @@ dependencies:
   sqlite3_flutter_libs: ^0.5.17
   logger: ^2.0.2+1
   redux_epics: ^0.15.1
+  shimmer: ^3.0.0
 
 dev_dependencies:
   flutter_test:

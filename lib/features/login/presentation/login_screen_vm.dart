@@ -1,11 +1,13 @@
-import 'package:redux/redux.dart';
-import 'package:transactions/core/redux/app_state.dart';
-import 'package:transactions/features/login/presentation/state_management/login_actions.dart';
+part of 'login_screen.dart';
 
-class LoginScreenViewModel {
+class _LoginScreenViewModel {
   final Store<AppState> _store;
 
-  LoginScreenViewModel(this._store);
+  _LoginScreenViewModel(this._store);
 
-  void onLogin(String userName, String password) => _store.dispatch(Login('userName', 'password'));
+  void onSaveUserName(String userName) => _store.dispatch(SaveUserName(userName));
+
+  void onSavePassword(String password) => _store.dispatch(SavePassword(password));
+
+  void onLogin() => _store.dispatch(Login());
 }

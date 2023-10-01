@@ -1,16 +1,16 @@
-import 'package:rxdart/rxdart.dart';
+import 'package:transactions/core/data/data_sources/login_data_source.dart';
+import 'package:transactions/core/data/db/dao.dart';
 import 'package:transactions/core/domain/auth_repository.dart';
 
 class AuthRepositoryImpl extends AuthRepository {
-  final _loginStatus = BehaviorSubject<bool>()
-    ..add(false);
+  AuthRepositoryImpl(this._dao, this._dataSource);
+
+  final TransactionsDao _dao;
+  final LoginDataSource _dataSource;
 
   @override
-  Future logIn(String userName, String password) async => _loginStatus.add(true);
+  Future logIn(String userName, String password) => _dataSource.login(userName, password);
 
   @override
-  Future logOut() async => _loginStatus.add(false);
-
-  @override
-  Stream<bool> get loginStatus => _loginStatus;
+  Future logOut() => _dao.clear();
 }

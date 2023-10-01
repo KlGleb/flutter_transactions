@@ -5,5 +5,5 @@ import 'package:transactions/features/donut/presentation/state_management/donut_
 Reducer<DonutState> donutReducer = combineReducers([
   TypedReducer<DonutState, DonutUpdated>(_donutUpdated),
 ]);
-// DonutUpdated
+
 DonutState _donutUpdated(DonutState state, DonutUpdated action) => action.data;

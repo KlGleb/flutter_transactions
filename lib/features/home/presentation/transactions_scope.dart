@@ -6,12 +6,13 @@ class _TransactionsScope extends StatelessWidget {
   final Widget child;
 
   @override
-  Widget build(BuildContext context) {
-    return StoreBuilder<AppState>(
-      onInit: (store) => store.dispatch(SubscribeToTransactions()),
-      onDispose: (store) => store.dispatch(UnsubscribeFromTransactions()),
-      rebuildOnChange: false,
-      builder: (_, __) => child,
-    );
-  }
+  Widget build(BuildContext context) => StoreBuilder<AppState>(
+        onInit: (store) {
+          store.dispatch(SubscribeToTransactions());
+          store.dispatch(SyncTransactions());
+        },
+        onDispose: (store) => store.dispatch(UnsubscribeFromTransactions()),
+        rebuildOnChange: false,
+        builder: (_, __) => child,
+      );
 }

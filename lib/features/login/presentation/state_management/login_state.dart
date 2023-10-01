@@ -1,13 +1,15 @@
-sealed class AuthState {}
+import 'package:flutter/foundation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class Unauthorized extends AuthState {
-  bool inProgress;
+part 'login_state.freezed.dart';
 
-  Unauthorized(this.inProgress);
-}
-
-class Authorized extends AuthState {
-  bool inProgress;
-
-  Authorized(this.inProgress);
+@freezed
+class LoginState with _$LoginState {
+  const factory LoginState({
+    @Default(false) bool inProgress,
+    @Default(false) bool wrongCredentialsError,
+    @Default(false) bool unknownError,
+    String? userName,
+    String? password,
+  }) = _LoginState;
 }

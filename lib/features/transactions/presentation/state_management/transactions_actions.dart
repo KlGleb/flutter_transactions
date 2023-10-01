@@ -13,5 +13,3 @@ class TransactionsCountUpdated extends TransactionAction {
 
   TransactionsCountUpdated(this.count);
 }
-
-class GetTransactions extends TransactionAction {}

@@ -1,19 +1,22 @@
 import 'package:redux/redux.dart';
 import 'package:transactions/core/domain/auth_repository.dart';
+import 'package:transactions/core/exceptions/auth_exception.dart';
+import 'package:transactions/core/logger.dart';
 import 'package:transactions/core/redux/app_state.dart';
+import 'package:transactions/core/redux/auth/auth_actions.dart';
 import 'package:transactions/features/login/presentation/state_management/login_actions.dart';
 
-List<Middleware<AppState>> createAuthMiddleware(AuthRepository repository) => [
+List<Middleware<AppState>> createLoginMiddleware(AuthRepository repository) => [
       TypedMiddleware<AppState, Login>(_createLogin(repository)),
-      TypedMiddleware<AppState, Logout>(_createLogout(repository)),
     ];
-
-Middleware<AppState> _createLogout(AuthRepository repository) => (Store<AppState> store, action, NextDispatcher next) {
-      next(action);
-      repository.logOut().then((value) => store.dispatch(LogoutSuccess()));
-    };
 
 Middleware<AppState> _createLogin(AuthRepository repository) => (Store<AppState> store, action, NextDispatcher next) {
       next(action);
-      repository.logIn(action.userName, action.password).then((_) => store.dispatch(LoginSuccess()));
+      final state = store.state.loginState;
+      repository.logIn(state.userName!, state.password!).then((_) {
+        logger.w('Completed');
+        store.dispatch(LoggedIn());
+      }).onError<WrongCredentialsException>((error, stackTrace) {
+        store.dispatch(WrongCredentialsError());
+      }).onError((_, __) => store.dispatch(LoggedInError()));
     };
