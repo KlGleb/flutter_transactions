@@ -1,7 +1,4 @@
 name: Flutter Build and Test
-permissions:
-  checks: write
-  pull-requests: write
 
 on:
   push:
@@ -35,17 +32,17 @@ jobs:
         run: flutter test --reporter json > test_results.json
 
       - name: Publish Test Results
-        uses: EnricoMi/publish-unit-test-result-action@v2
+        uses: actions/upload-artifact@v3
         if: always()
         with:
-          files: |
-            test_results.json
+          name: test-results
+          path: test_results.json
 
       - name: Build APK
         run: flutter build apk
 
       - name: Archive Artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: app-release
           path: build/app/outputs/flutter-apk/app-release.apk
