@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
@@ -6,9 +7,7 @@ import 'package:transactions/core/util/lang.dart';
 import 'package:transactions/features/login/presentation/state_management/login_actions.dart';
 
 part 'error_field.dart';
-
 part 'login_screen_vm.dart';
-
 part 'validators.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -32,7 +31,7 @@ class LoginScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 TextFormField(
-                  initialValue: 'user',
+                  initialValue: kDebugMode ? 'user' : null,
                   decoration: decoration.copyWith(labelText: context.lang.userNameLabel),
                   onSaved: (newValue) => vm.onSaveUserName(newValue!),
                   validator: _userNameValidator(context),
@@ -41,7 +40,7 @@ class LoginScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 16.0),
                 TextFormField(
-                  initialValue: 'password',
+                  initialValue: kDebugMode ? 'password' : null,
                   decoration: decoration.copyWith(labelText: context.lang.passwordLabel),
                   obscureText: true,
                   validator: _passwordValidator(context),
@@ -59,11 +58,12 @@ class LoginScreen extends StatelessWidget {
                     onPressed: inProgress
                         ? null
                         : () {
-                            if (_formKey.currentState!.validate()) {
+                      if (_formKey.currentState!.validate()) {
+                        FocusScope.of(context).unfocus();
                               _formKey.currentState!.save();
                               vm.onLogin();
                             }
-                          },
+                    },
                     child: Text(context.lang.loginButton),
                   ),
                 ),
