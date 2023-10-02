@@ -1,12 +1,15 @@
 # Transaction Manager App
-[![Flutter Build and Test](https://github.com/KlGleb/flutter_transactions/actions/workflows/pipeline.yaml/badge.svg)](https://github.com/KlGleb/flutter_transactions/actions/workflows/pipeline.yaml)
+[![Flutter Build and Test](https://github.com/KlGleb/flutter_transactions/actions/workflows/pipeline.yaml/badge.svg)](https://github.com/KlGleb/flutter_transactions/actions/workflows/pipeline.yaml)   
+You can download apk from the [latest release page](https://github.com/KlGleb/flutter_transactions/releases/latest)
+
 ## Introduction
 
 This Flutter application is a test project aimed at creating a transaction management system. The
 app features a login screen, a main page with a list of transactions, and a donut chart representing
 transaction types. The data sources emulate Rest API requests, error handling is implemented on the
 login screen, and there's an in-memory SQLite cache layer that reacts responsively using Drift. Some
-components are unit-tested (dao, repositories, reducers, middlewares).
+components are unit-tested (dao, repositories, reducers, middlewares). 
+
 
 ## Getting Started
 
