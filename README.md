@@ -1,5 +1,5 @@
 # Transaction Manager App
-
+[![Flutter Build and Test](https://github.com/KlGleb/flutter_transactions/actions/workflows/pipeline.yaml/badge.svg)](https://github.com/KlGleb/flutter_transactions/actions/workflows/pipeline.yaml)
 ## Introduction
 
 This Flutter application is a test project aimed at creating a transaction management system. The
