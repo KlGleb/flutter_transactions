@@ -25,11 +25,10 @@ class SubscribeTransactionsEpic implements EpicClass<AppState> {
   SubscribeTransactionsEpic(this._repository);
 
   @override
-  Stream<dynamic> call(Stream<dynamic> actions, EpicStore<AppState> store) {
-    return actions.whereType<SubscribeToTransactions>().switchMap(
-          (value) => _repository.transactions
-              .map((event) => TransactionsUpdated(event))
-              .takeUntil(actions.whereType<UnsubscribeFromTransactions>()),
-        );
-  }
+  Stream<dynamic> call(Stream<dynamic> actions, EpicStore<AppState> store) =>
+      actions.whereType<SubscribeToTransactions>().switchMap(
+            (value) => _repository.transactions
+                .map((event) => TransactionsUpdated(event))
+                .takeUntil(actions.whereType<UnsubscribeFromTransactions>()),
+          );
 }

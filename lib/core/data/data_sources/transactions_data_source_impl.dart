@@ -21,10 +21,10 @@ class TransactionDataSourceImpl implements TransactionDataSource {
 
 final _random = Random();
 
-final count = 50 + _random.nextInt(500);
+final _count = 50 + _random.nextInt(500);
 
 var _transactions = List.generate(
-  count,
+  _count,
   (index) {
     final amount = 100 + _random.nextInt(5000);
     final int commission = amount ~/ 100;

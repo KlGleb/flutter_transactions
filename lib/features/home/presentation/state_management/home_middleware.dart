@@ -19,8 +19,6 @@ Middleware<AppState> _createLogout(AuthRepository repository) => (Store<AppState
       repository.logOut().then((value) => store.dispatch(LoggedOut()));
     };
 
-List<Middleware<AppState>> createTransactionsMiddleware(TransactionRepository repository) => [];
-
 Middleware<AppState> _createGetTransactions(TransactionRepository repository) =>
     (Store<AppState> store, action, NextDispatcher next) {
       next(action);

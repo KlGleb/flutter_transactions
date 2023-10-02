@@ -12,9 +12,9 @@ List<Middleware<AppState>> createLoginMiddleware(AuthRepository repository) => [
 Middleware<AppState> _createLogin(AuthRepository repository) => (Store<AppState> store, action, NextDispatcher next) {
       next(action);
       final state = store.state.loginState;
-      repository.logIn(state.userName!, state.password!).then((_) {
-        store.dispatch(LoggedIn());
-      }).onError<WrongCredentialsException>((error, stackTrace) {
-        store.dispatch(WrongCredentialsError());
-      }).onError((_, __) => store.dispatch(LoggedInError()));
+      repository
+          .logIn(state.userName!, state.password!)
+          .then((_) => store.dispatch(LoggedIn()))
+          .onError<WrongCredentialsException>((_, __) => store.dispatch(WrongCredentialsError()))
+          .onError((_, __) => store.dispatch(LoggedInError()));
     };

@@ -30,7 +30,7 @@ class TransactionDetailsScreen extends StatelessWidget {
               Routemaster.of(context).pop();
             }
           },
-          builder: (context, dynamic vm) {
+          builder: (context, vm) {
             final tr = vm.transaction;
             if (tr == null) return const Center(child: CircularProgressIndicator());
             return _TransactionDetailsCard(transaction: tr, cancelDisabled: vm.removingInProgress);

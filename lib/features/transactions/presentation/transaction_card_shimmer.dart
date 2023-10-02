@@ -18,20 +18,18 @@ class _TransactionCardShimmer extends StatelessWidget {
   const _TransactionCardShimmer({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return _MyShimmer(
-      child: IgnorePointer(
-        child: _TransactionCard(
-          transaction: TransactionModel(
-            id: '###',
-            amount: 123,
-            commission: 0,
-            total: 0,
-            type: TransactionType.transfer,
-            date: DateTime.now(),
+  Widget build(BuildContext context) => _MyShimmer(
+        child: IgnorePointer(
+          child: _TransactionCard(
+            transaction: TransactionModel(
+              id: '###',
+              amount: 123,
+              commission: 0,
+              total: 0,
+              type: TransactionType.transfer,
+              date: DateTime.now(),
+            ),
           ),
         ),
-      ),
-    );
-  }
+      );
 }

@@ -6,7 +6,6 @@ import 'package:transactions/features/transaction_details/presentation/state_man
 
 final appMiddleware = [
   ...createLoginMiddleware(getIt()),
-  ...createTransactionsMiddleware(getIt()),
   ...createTransactionDetailsMiddleware(getIt()),
   ...createDonutMiddleware(getIt()),
   ...createHomeMiddleware(getIt(), getIt()),
