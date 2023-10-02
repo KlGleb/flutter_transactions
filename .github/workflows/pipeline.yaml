@@ -1,0 +1,61 @@
+name: Flutter Build and Test
+permissions:
+  checks: write
+  pull-requests: write
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build and Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.13.6'
+
+      - name: Install Dependencies
+        run: flutter pub get
+
+      - name: Codegen
+        run: flutter pub run build_runner build --delete-conflicting-outputs
+
+      - name: Codegen
+        run: flutter gen-l10n
+
+      - name: Build and Test
+        run: flutter test --reporter json > test_results.json
+
+      - name: Publish Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        if: always()
+        with:
+          files: |
+            test_results.json
+
+      - name: Build APK
+        run: flutter build apk
+
+      - name: Archive Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: app-release
+          path: build/app/outputs/flutter-apk/app-release.apk
+
+
+#      - name: Build APK
+#        run: flutter build apk --debug
+#
+#      - name: Archive Artifacts
+#        uses: actions/upload-artifact@v2
+#        with:
+#          name: app-debug
+#          path: build/app/outputs/flutter-apk/app-debug.apk
