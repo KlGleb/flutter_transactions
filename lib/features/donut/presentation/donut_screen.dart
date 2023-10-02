@@ -21,10 +21,10 @@ class DonutScreen extends StatelessWidget {
               width: 300,
               padding: const EdgeInsets.all(8.0),
               child: PieChart(
-                dataMap: vm.map((key, value) => MapEntry<String, double>(key.getName(context), value.toDouble())),
-                chartType: ChartType.ring,
-                legendOptions: const LegendOptions(legendPosition: LegendPosition.top),
-              ),
+                  dataMap: vm.map((key, value) => MapEntry<String, double>(key.getName(context), value.toDouble())),
+                  chartType: ChartType.ring,
+                  legendOptions: const LegendOptions(legendPosition: LegendPosition.top),
+                  chartValuesOptions: const ChartValuesOptions(decimalPlaces: 0)),
             ),
           );
         },
