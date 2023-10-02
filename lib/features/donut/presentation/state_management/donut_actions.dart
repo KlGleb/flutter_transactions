@@ -6,4 +6,9 @@ class DonutUpdated {
   DonutState data;
 
   DonutUpdated(this.data);
+
+  @override
+  String toString() {
+    return data.toString();
+  }
 }

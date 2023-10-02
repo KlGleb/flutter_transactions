@@ -1,7 +1,6 @@
 import 'package:redux/redux.dart';
 import 'package:transactions/core/domain/auth_repository.dart';
 import 'package:transactions/core/exceptions/auth_exception.dart';
-import 'package:transactions/core/logger.dart';
 import 'package:transactions/core/redux/app_state.dart';
 import 'package:transactions/core/redux/auth/auth_actions.dart';
 import 'package:transactions/features/login/presentation/state_management/login_actions.dart';
@@ -14,7 +13,6 @@ Middleware<AppState> _createLogin(AuthRepository repository) => (Store<AppState>
       next(action);
       final state = store.state.loginState;
       repository.logIn(state.userName!, state.password!).then((_) {
-        logger.w('Completed');
         store.dispatch(LoggedIn());
       }).onError<WrongCredentialsException>((error, stackTrace) {
         store.dispatch(WrongCredentialsError());

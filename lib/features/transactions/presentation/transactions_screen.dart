@@ -10,9 +10,7 @@ import 'package:transactions/core/util/lang.dart';
 import 'package:transactions/features/transactions/presentation/state_management/transactions_state.dart';
 
 part 'transaction_card.dart';
-
 part 'transaction_card_shimmer.dart';
-
 part 'transaction_icon.dart';
 
 class TransactionsScreen extends StatelessWidget {
@@ -25,7 +23,8 @@ class TransactionsScreen extends StatelessWidget {
         builder: (context, vm) => vm.synchronizing
             ? const _TransactionsListShimmer()
             : ListView.builder(
-                itemBuilder: (context, index) => _TransactionCard(transaction: vm.transactions[index]),
+                itemBuilder: (context, index) =>
+                    _TransactionCard(key: ValueKey(vm.transactions[index]), transaction: vm.transactions[index]),
                 itemCount: vm.transactions.length,
               ),
       );

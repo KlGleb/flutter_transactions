@@ -11,7 +11,7 @@ class TransactionsDao extends DatabaseAccessor<AppDatabase> with _$TransactionsD
   Stream<Iterable<TransactionDto>> get watchTransactions => (select(transactions)).watch();
 
   Stream<TransactionDto?> watchById(String id) =>
-      (select(transactions)..where((tbl) => tbl.id.equals(id))).watchSingleOrNull();
+      (select(transactions)..where((tbl) => tbl.id.equals(id))).watchSingleOrNull().distinct();
 
   Future remove(String id) => (delete(transactions)..where((tbl) => tbl.id.equals(id))).go();
 

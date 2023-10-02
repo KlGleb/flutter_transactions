@@ -1,7 +1,7 @@
 {
   "appName": "Transactions",
   "tabTransactions": "Transactions ({count})",
-  "tabChart": "Chart",
+  "tabChart": "Overview",
   "transactionTypeDeposit": "Deposit",
   "transactionTypeTransfer": "Transfer",
   "transactionTypeWithdrawal": "Withdrawal",

@@ -11,7 +11,6 @@ class TransactionEntity with _$TransactionEntity {
     required String id,
     required int amount,
     required int commission,
-    required int sum,
     required int total,
     required TransactionType type,
     required DateTime date,

@@ -35,7 +35,6 @@ var _transactions = List.generate(
       id: '$index',
       amount: amount,
       commission: commission,
-      sum: amount,
       total: total,
       type: type,
       date: date,
