@@ -18,7 +18,7 @@ flutter pub run build_runner build --delete-conflicting-outputs
 flutter gen-l10n
 ```
 
-Login credentials: username/password (default values in debug mode).
+Login credentials: user/password (default values in debug mode).
 
 ## Features
 
